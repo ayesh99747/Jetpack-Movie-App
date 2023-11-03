@@ -73,7 +73,9 @@ fun MyApp(content: @Composable () -> Unit) {
             }
         ) {
 
-            content()
+            Box(modifier = Modifier.padding(it)) {
+                content()
+            }
         }
     }
 }
