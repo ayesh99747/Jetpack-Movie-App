@@ -19,6 +19,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -39,8 +40,8 @@ fun HomeScreen(navController:NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Movies") },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Magenta)
+                title = { Text(text = "Movies", style = MaterialTheme.typography.titleLarge) },
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
             )
         }
     ) {
