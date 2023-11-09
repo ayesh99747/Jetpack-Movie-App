@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -40,7 +41,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.example.jetpack_movie_app.model.Movie
 import com.example.jetpack_movie_app.model.getMovies
@@ -72,10 +76,13 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClicked: (String) -> Unit = {}
                 shape = RectangleShape,
                 shadowElevation = 4.dp
             ) {
-                Image(painter = rememberImagePainter(data = movie.images[0], builder = {
-                    crossfade(true)
-                    transformations(CircleCropTransformation())
-                }), contentDescription = "Movie Poster")
+                Image(painter = rememberAsyncImagePainter(
+                    ImageRequest.Builder(LocalContext.current).data(data = movie.images[0])
+                        .apply(block = fun ImageRequest.Builder.() {
+                            crossfade(true)
+                            transformations(CircleCropTransformation())
+                        }).build()
+                ), contentDescription = "Movie Poster")
             }
             Column(
                 modifier = Modifier.padding(4.dp)

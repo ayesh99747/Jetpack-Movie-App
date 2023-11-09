@@ -18,6 +18,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -32,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.example.jetpack_movie_app.model.Movie
 import com.example.jetpack_movie_app.model.getMovies
@@ -64,10 +66,11 @@ fun DetailsScreen(navController: NavController, movieId: String?) {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
+                .padding(it)
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
+                verticalArrangement = Arrangement.Center
             ) {
                 MovieRow(movie = newMovieList.first())
                 Spacer(modifier = Modifier.height(8.dp))
@@ -86,16 +89,21 @@ fun DetailsScreen(navController: NavController, movieId: String?) {
 private fun HorizontalScrollableImageView(newMovieList: List<Movie>) {
     LazyRow {
         items(newMovieList.first().images) { image ->
-            Card(
+            ElevatedCard(
                 modifier = Modifier
                     .padding(12.dp)
-                    .size(240.dp),
+                    .size(300.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
             ) {
-                Image(
-                    painter = rememberImagePainter(data = image),
-                    contentDescription = "Movie Poster"
-                )
+                Column (
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = rememberAsyncImagePainter(model = image),
+                        contentDescription = "Movie Poster"
+                    )
+                }
             }
         }
     }
