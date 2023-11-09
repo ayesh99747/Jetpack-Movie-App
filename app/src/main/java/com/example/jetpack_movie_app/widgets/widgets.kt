@@ -53,7 +53,7 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClicked: (String) -> Unit = {}
         modifier = Modifier
             .padding(4.dp)
             .fillMaxWidth()
-            .height(130.dp)
+            //.height(130.dp)
             .clickable {
                 onItemClicked(movie.id)
             },

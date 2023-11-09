@@ -39,7 +39,7 @@ import com.example.jetpack_movie_app.widgets.MovieRow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController:NavController) {
+fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -48,7 +48,6 @@ fun HomeScreen(navController:NavController) {
             )
         }
     ) {
-
         Box(modifier = Modifier.padding(it)) {
             MainContent(navController = navController)
         }
@@ -64,7 +63,7 @@ fun MainContent(
         LazyColumn {
             items(items = movieList) {
                 MovieRow(movie = it) { movie ->
-                    navController.navigate(route = MovieScreens.DetailsScreen.name+"/$movie")
+                    navController.navigate(route = MovieScreens.DetailsScreen.name + "/$movie")
                 }
             }
         }
