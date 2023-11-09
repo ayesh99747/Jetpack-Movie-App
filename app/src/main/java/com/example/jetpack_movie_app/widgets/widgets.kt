@@ -101,16 +101,25 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClicked: (String) -> Unit = {}
                                 style = SpanStyle(
                                     color = Color.DarkGray,
                                     fontSize = 13.sp,
-                                    fontWeight = FontWeight.Bold
+                                    fontWeight = FontWeight.Light
                                 )
                             ) {
                                 append(movie.plot)
                             }
                         }, modifier = Modifier.padding(6.dp))
                         Divider(modifier = Modifier.padding(3.dp))
-                        Text(text = "Director: ${movie.director}", style = MaterialTheme.typography.titleSmall)
-                        Text(text = "Actors: ${movie.actors}", style = MaterialTheme.typography.titleSmall)
-                        Text(text = "Rating: ${movie.rating}", style = MaterialTheme.typography.titleSmall)
+                        Text(
+                            text = "Director: ${movie.director}",
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        Text(
+                            text = "Actors: ${movie.actors}",
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        Text(
+                            text = "Rating: ${movie.rating}",
+                            style = MaterialTheme.typography.titleSmall
+                        )
                     }
                 }
                 Icon(
